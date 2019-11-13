@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Etch-a-Sketch</title>
+  <link href="css/main.css" rel="stylesheet">
+</head>
+<body>
+  <h1>Etch-a-Sketch</h1>
+  <h2>Assignment part of the Odin Project's curriculum</h2>
+  <h3>by Hans Oliveira</h3>
+  <button id="resize-button">Resize Grid</button>
+  <div id="container"></div>
+  <script>
+    const container = document.getElementById('container');
+    let rows = 16;
+    let columns = 16;
+
+    const squares = document.getElementsByClassName('square');
+
+    function createGrid() {
+      grid = rows * columns;
+      for (let i = 1; i < grid+1; i++) {
+        const squareDiv = document.createElement('div');
+        squareDiv.className = 'square';
+        container.appendChild(squareDiv);
+        console.log(i);
+      }
+
+      for(var i = 0; i < squares.length; i++){
+        squares[i].addEventListener('mouseenter', changeColor);
+      }
+    }
+
+    createGrid();
+
+    function randomColor() {
+      return Math.floor(Math.random()*255);
+    }
+
+    function changeColor() {
+      this.style.backgroundColor = 'rgb('+ randomColor() + ',' + randomColor() +',' + randomColor() + ')';
+    }
+
+    const resizeButton = document.getElementById('resize-button');
+
+    function promptSize() {
+
+      for (let i = grid; i > 0; i--) {
+        container.removeChild(squares[0]);
+      }
+
+      rows = prompt('Change to how many rows?',);
+      columns = prompt('Change to how many columns?',);
+
+      createGrid();
+    }
+
+    resizeButton.addEventListener('click', promptSize);
+  </script>
+</body>
+</html>
