@@ -20,6 +20,9 @@
 
     function createGrid() {
       grid = rows * columns;
+      container.style.gridTemplateRows = 'repeat(' + rows + ', 1fr)';
+      container.style.gridTemplateColumns = 'repeat(' + columns + ', 1fr)';
+
       for (let i = 1; i < grid+1; i++) {
         const squareDiv = document.createElement('div');
         squareDiv.className = 'square';
